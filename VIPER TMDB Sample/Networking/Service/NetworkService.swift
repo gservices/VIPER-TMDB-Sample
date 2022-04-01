@@ -8,9 +8,9 @@
 import Foundation
 
 class NetworkService {
-    private let baseEndpointUrl = URL(string: AppConstants.baseURL)
+    private let baseEndpointUrl = URL(string: AppConstants.baseURL + VersionAPI.tree.rawValue)
     private let session = URLSession(configuration: .default)
-    private var task = URLSessionTask()
+    private var task: URLSessionTask?
     
     private let apiKey: String
     
@@ -22,7 +22,7 @@ class NetworkService {
         guard let baseUrl = URL(string: request.resourceName, relativeTo: baseEndpointUrl) else {
             fatalError("Recurso inválido: \(request.resourceName)")
         }
-
+        
         var components = URLComponents(url: baseUrl, resolvingAgainstBaseURL: true)!
 
         let commonQueryItems = [
@@ -37,7 +37,7 @@ class NetworkService {
         } catch {
             fatalError("Parametros incorretos: \(error)")
         }
-
+        
         components.queryItems = commonQueryItems + customQueryItems
         return components.url!
     }
@@ -81,11 +81,11 @@ class NetworkService {
             }
         }
         
-        task.resume()
+        task?.resume()
     }
     
-    func cancel() {
-        self.task.cancel()
+    deinit {
+        self.task?.cancel()
     }
 }
 
@@ -109,6 +109,5 @@ enum NetworkServiceError: LocalizedError {
         case .authenticationError: return "Auth Error"
         case .badRequest: return "Bad Request"
         }
-    }
-    
+    }    
 }

@@ -29,6 +29,7 @@ class PopularMoviesPresenter {
                 case .success(let movies):
                     self._movieItems.append(contentsOf: movies)
                     self._view.updateView()
+                    self._view.hideLoader()
                 case.failure(let error):
                     self._wireframe.showErrorAlert(with: error.localizedDescription)
                     self._view.hideLoader()

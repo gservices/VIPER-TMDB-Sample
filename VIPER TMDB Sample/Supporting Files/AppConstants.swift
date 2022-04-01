@@ -12,3 +12,8 @@ struct AppConstants {
     static let baseURL: String = "https://api.themoviedb.org/"
     static let thumbnailURL: String = "https://image.tmdb.org/t/p/"
 }
+
+enum VersionAPI: String {
+    case tree = "3/"
+    case four = "4/"
+}
