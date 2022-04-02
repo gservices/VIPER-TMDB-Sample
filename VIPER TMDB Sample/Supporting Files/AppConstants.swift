@@ -14,6 +14,6 @@ struct AppConstants {
 }
 
 enum VersionAPI: String {
-    case tree = "3/"
-    case four = "4/"
+    case tree = "3"
+    case four = "4"
 }

@@ -11,16 +11,16 @@ class PopularMoviesViewController: TemplateViewController {
     var presenter: PopularMoviesPresentationProtocol!
     
     private lazy var tableView: UITableView = {
-        let tabelView = UITableView()
-        tabelView.backgroundColor = .clear
-        tabelView.separatorStyle = .none
-        tabelView.showsVerticalScrollIndicator = false
-        tabelView.rowHeight = (self.view.frame.height) / 3
-        tabelView.register(MovieCell.self, forCellReuseIdentifier: String(describing: MovieCell.self))
-        tabelView.dataSource = self
-        tabelView.delegate = self
-        tabelView.showsHorizontalScrollIndicator = false
-        return tabelView
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.rowHeight = (self.view.frame.height) / 3
+        tableView.register(MovieCell.self, forCellReuseIdentifier: String(describing: MovieCell.self))
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.showsHorizontalScrollIndicator = false
+        return tableView
     }()
     
     private lazy var footerView: UIView = {
@@ -64,6 +64,10 @@ extension PopularMoviesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.presenter.numberOrRows(in: section)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

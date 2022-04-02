@@ -38,7 +38,7 @@ protocol SearchMoviesPresentationProtocol: PresenterProtocol {
 
 protocol SearchMoviesInteractorProtocol: InteractorProtocol {
     func searchForMovie(with searchTerm: String, page: Int, _ completion: @escaping (Result<[Movie], Error>) -> Void)
-    func getSearchTerms(_ completion: @escaping FetchSearchTermsGateway)
+    func getSearchTerms(_ completion: @escaping FetchLocalTermsCompletion)
     func save(searchTerms: [String])
 }
 

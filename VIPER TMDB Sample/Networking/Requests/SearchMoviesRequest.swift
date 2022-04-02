@@ -8,7 +8,7 @@
 import Foundation
 
 struct SearchMoviesRequest: APIRequest {
-    private let searchMovie: String
+    private let query: String
     private let page: Int
     
     typealias Response = ResponseData<Movie>
@@ -16,8 +16,8 @@ struct SearchMoviesRequest: APIRequest {
         return "/3/search/movie/"
     }
     
-    init(searchMovie: String, page: Int) {
-        self.searchMovie = searchMovie
+    init(searchMovie: String, page: Int = 1) {
+        self.query = searchMovie
         self.page = page
     }
 }

@@ -1,5 +1,5 @@
 //
-//  SearchMoviesGateway.swift
+//  SearchLocalTermsGateway.swift
 //  VIPER TMDB Sample
 //
 //  Created by Carlos Henrique Gava on 31/03/22.
@@ -7,7 +7,14 @@
 
 import Foundation
 
-class SearchTermLocalGetway {
+typealias FetchLocalTermsCompletion = (Swift.Result<[String], Error>) -> Void
+
+protocol SearchLocalTermsGatewayProtocol {
+    func getSearchLocalHistory(completion: @escaping FetchLocalTermsCompletion)
+    func save(searchTerms: [String])
+}
+
+class SearchLocalTermsGateway {
     private let SEARCH_KEY = "br.com.gservices.VIPERTMDBSample"
     private let storage: JSONLocalStorage
     
@@ -18,8 +25,8 @@ class SearchTermLocalGetway {
     }
 }
 
-extension SearchTermLocalGetway: SearchMoviesGateway {
-    func getSearchHistory(completion: @escaping FetchSearchTermsGateway) {
+extension SearchLocalTermsGateway: SearchLocalTermsGatewayProtocol {
+    func getSearchLocalHistory(completion: @escaping FetchLocalTermsCompletion) {
         do {
             let result: [String] = try self.storage.fetch(for: SEARCH_KEY)
             completion(.success(result))

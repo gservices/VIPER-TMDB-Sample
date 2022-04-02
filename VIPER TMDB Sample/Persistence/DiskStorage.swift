@@ -12,14 +12,23 @@ class DiskStorage {
     private let fileManager: FileManager
     private let path: URL
 
-    init(
-        path: URL,
-        queue: DispatchQueue = .init(label: "DiskCache.Queue"),
-        fileManager: FileManager = FileManager.default
-    ) {
+    init(path: URL,queue: DispatchQueue = .init(label: "DiskCache.Queue"), fileManager: FileManager = FileManager.default) {
         self.path = path
         self.queue = queue
         self.fileManager = fileManager
+    }
+}
+
+extension DiskStorage {
+    private func createFolders(in url: URL) throws {
+        let folderUrl = url.deletingLastPathComponent()
+        if !fileManager.fileExists(atPath: folderUrl.path) {
+            try fileManager.createDirectory(
+                at: folderUrl,
+                withIntermediateDirectories: true,
+                attributes: nil
+            )
+        }
     }
 }
 
@@ -42,19 +51,6 @@ extension DiskStorage: WritableStorage {
             } catch {
                 handler(.failure(error))
             }
-        }
-    }
-}
-
-extension DiskStorage {
-    private func createFolders(in url: URL) throws {
-        let folderUrl = url.deletingLastPathComponent()
-        if !fileManager.fileExists(atPath: folderUrl.path) {
-            try fileManager.createDirectory(
-                at: folderUrl,
-                withIntermediateDirectories: true,
-                attributes: nil
-            )
         }
     }
 }

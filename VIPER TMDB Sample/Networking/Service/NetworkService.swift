@@ -8,9 +8,9 @@
 import Foundation
 
 class NetworkService {
-    private let baseEndpointUrl = URL(string: AppConstants.baseURL + VersionAPI.tree.rawValue)
+    private let baseEndpointUrl = URL(string: AppConstants.baseURL)
     private let session = URLSession(configuration: .default)
-    private var task: URLSessionTask?
+    private weak var task: URLSessionTask?
     
     private let apiKey: String
     
@@ -53,7 +53,7 @@ class NetworkService {
     public func send<T: APIRequest>(_ request: T, completion: @escaping(Result<T.Response, Error>) -> Void) {
         let endpoint = self.endpoint(for: request)
         
-        task = session.dataTask(with: URLRequest(url: endpoint)) { data, response, error in
+        task = session.dataTask(with: URLRequest(url: endpoint)) { [weak self] data, response, error in
             guard error == nil else {
                 completion(.failure(error!))
                 return
@@ -77,11 +77,12 @@ class NetworkService {
                     completion(.failure(NetworkServiceError.parsingError))
                 }
             } else {
-                completion(.failure(self.handleUnSuccessfullStatusCode(response.statusCode)))
+                completion(.failure(self!.handleUnSuccessfullStatusCode(response.statusCode)))
             }
         }
         
         task?.resume()
+        self.task = nil
     }
     
     deinit {

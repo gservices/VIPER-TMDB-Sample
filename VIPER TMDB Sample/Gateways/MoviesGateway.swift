@@ -8,22 +8,16 @@
 import Foundation
 
 typealias FetchMoviesGateway = (Result<[Movie], Error>) -> Void
-typealias FetchSearchTermsGateway = (Swift.Result<[String], Error>) -> Void
 
 protocol MoviesGateway {
     func getPopularMovies(_ completion: @escaping FetchMoviesGateway)
-    func searchforMovie(with searchTerm: String, page: Int, completion: @escaping FetchMoviesGateway)
-}
-
-protocol SearchMoviesGateway {
-    func getSearchHistory(completion: @escaping FetchSearchTermsGateway)
-    func save(searchTerms: [String])
+    func searchForMovie(with searchTerm: String, page: Int, completion: @escaping FetchMoviesGateway)
 }
 
 class MoviesRemoteGateway: NetworkService {}
 
 extension MoviesRemoteGateway: MoviesGateway {
-    func searchforMovie(with searchTerm: String, page: Int, completion: @escaping FetchMoviesGateway) {
+    func searchForMovie(with searchTerm: String, page: Int, completion: @escaping FetchMoviesGateway) {
         let apiClient = NetworkService(apiKey: AppConstants.apiKey)
         apiClient.send(SearchMoviesRequest(searchMovie: searchTerm, page: page)) { (result: Result<ResponseData<Movie>, Error>) in
             switch result {
@@ -46,5 +40,4 @@ extension MoviesRemoteGateway: MoviesGateway {
             }
         }
     }
-    
 }

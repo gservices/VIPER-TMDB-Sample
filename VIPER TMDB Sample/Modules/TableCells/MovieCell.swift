@@ -45,7 +45,7 @@ class MovieCell: UITableViewCell {
     private let overViewLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont.preferredFont(forTextStyle: .caption2)
         label.textAlignment = .left
         label.numberOfLines = 5
         label.setContentHuggingPriority(.defaultLow, for: .vertical)
@@ -56,7 +56,7 @@ class MovieCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupViewLayout()
         self.backgroundColor = .clear
-        self.selectionStyle = .none
+        self.selectionStyle = .default
         self.animateCell()
     }
     
@@ -73,7 +73,7 @@ class MovieCell: UITableViewCell {
         self.addSubview(containerView)
         self.containerView.pinToSuperview(forAtrributes: [.top, .leading], constant: 12)
         self.containerView.pinToSuperview(forAtrributes: [.trailing], constant: -12)
-        self.containerView.pinToSuperview(forAtrributes: [.bottom])
+        self.containerView.pinToSuperview(forAtrributes: [.bottom], constant: 2)
         
         self.containerView.addSubview(thumbnailImageView)
         self.thumbnailImageView.pinToSuperview(forAtrributes: [.leading, .top], constant: 2)
@@ -86,7 +86,7 @@ class MovieCell: UITableViewCell {
         self.nameLabel.pinToSuperview(forAtrributes: [.trailing], constant: -8)
         
         self.containerView.addSubview(releaseDateLabel)
-        self.releaseDateLabel.pin(attribute: .top, toView: self.nameLabel, toAttribute: .bottom, constant: 8)
+        self.releaseDateLabel.pin(attribute: .top, toView: self.nameLabel, toAttribute: .bottom, constant: 4)
         self.releaseDateLabel.pin(attribute: .leading, toView: self.thumbnailImageView, toAttribute: .trailing, constant: 8)
         self.releaseDateLabel.pinToSuperview(forAtrributes: [.trailing], constant: -8)
         

@@ -30,7 +30,7 @@ class MainViewController: UITabBarController {
         
         let searchRoute = UINavigationController()
         searchRoute.tabBarItem =  UITabBarItem(tabBarSystemItem: .search, tag: 1)
-        //searchRoute.setRootRoute(SearchWireframe())
+        searchRoute.setRootRoute(SearchMoviesWireframe())
         
         
         self.setViewControllers([mostRecentRoute,searchRoute], animated: true)
