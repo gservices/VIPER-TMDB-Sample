@@ -23,6 +23,7 @@ class SearchMoviesViewController: TemplateViewController {
             searchBar.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
             searchBar.tintColor = .lightGray
             searchBar.searchBarStyle = .minimal
+            searchBar.barTintColor = .black
         }
     
         return searchBar
@@ -60,6 +61,12 @@ class SearchMoviesViewController: TemplateViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.presenter.handleShowSearchButton()
         self.presenter.viewDidLoad()
     }
     
@@ -67,6 +74,8 @@ class SearchMoviesViewController: TemplateViewController {
         super.viewWillDisappear(animated)
         self.presenter.viewWillDisappear(animated: animated)
     }
+    
+    
     
     private func setupView() {
         self.setupNavigationBar()

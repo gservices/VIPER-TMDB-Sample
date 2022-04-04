@@ -59,6 +59,7 @@ class SearchMoviesPresenter {
                 switch result {
                 case .success(let movies):
                     self?._items = movies
+                    self?._searchTerms.append(text)
                     self?._view?.updateSearchResult()
                 case.failure(let error):
                     self?._wireframe.showErrorAlert(with: error.localizedDescription)

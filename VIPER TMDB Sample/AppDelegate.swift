@@ -14,18 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         do {
-            try Network.reachability = Reachability(hostname: "www.google.com")
+            try Network.reachability = Reachability(hostname: "uol.com.br")
         }
         catch {
             switch error as? Network.Error {
             case let .failedToCreateWith(hostname)?:
-                print("Network error:\nFailed to create reachability object With host named:", hostname)
+                print("Erro de rede:\nFalha ao criar o objeto de acessibilidade com o hostname:", hostname)
             case let .failedToInitializeWith(address)?:
-                print("Network error:\nFailed to initialize reachability object With address:", address)
+                print("Erro de rede:\nFalha ao inicializar o objeto de acessibilidade com endereço:", address)
             case .failedToSetCallout?:
-                print("Network error:\nFailed to set callout")
+                print("Erro de rede:'\nFalha ao definir a callout")
             case .failedToSetDispatchQueue?:
-                print("Network error:\nFailed to set DispatchQueue")
+                print("Erro de rede:\nFalha ao definir DispatchQueue")
             case .none:
                 print(error)
             }
