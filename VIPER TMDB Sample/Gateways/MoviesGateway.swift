@@ -19,7 +19,7 @@ class MoviesRemoteGateway: NetworkService {}
 extension MoviesRemoteGateway: MoviesGateway {
     func searchForMovie(with searchTerm: String, page: Int, completion: @escaping FetchMoviesGateway) {
         let apiClient = NetworkService(apiKey: AppConstants.apiKey)
-        apiClient.send(SearchMoviesRequest(searchMovie: searchTerm, page: page)) { (result: Result<ResponseData<Movie>, Error>) in
+        apiClient.send(SearchMoviesRequest(searchMovie: searchTerm, page: page)) { (result: Result<Movies<Movie>, Error>) in
             switch result {
             case .success(let data):
                 completion(.success(data.results))
@@ -31,7 +31,7 @@ extension MoviesRemoteGateway: MoviesGateway {
     
     func getPopularMovies(_ completion: @escaping FetchMoviesGateway) {
         let apiClient = NetworkService(apiKey: AppConstants.apiKey)
-        apiClient.send(PopularMoviesRequest()) { (result: Result<ResponseData<Movie>, Error>) in
+        apiClient.send(PopularMoviesRequest()) { (result: Result<Movies<Movie>, Error>) in
             switch(result) {
             case .success(let data):
                 completion(.success(data.results))

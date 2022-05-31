@@ -8,7 +8,7 @@
 import Foundation
 
 struct PopularMoviesRequest: APIRequest {
-    typealias Response = ResponseData<Movie>
+    typealias Response = Movies<Movie>
     var resourceName: String {
         return "/3/movie/popular"
     }

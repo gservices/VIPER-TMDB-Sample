@@ -11,7 +11,7 @@ struct SearchMoviesRequest: APIRequest {
     private let query: String
     private let page: Int
     
-    typealias Response = ResponseData<Movie>
+    typealias Response = Movies<Movie>
     var resourceName: String {
         return "/3/search/movie/"
     }

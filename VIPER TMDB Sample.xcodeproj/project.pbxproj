@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523C4A602819F42400C9E68B /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C4A5F2819F42400C9E68B /* Image.swift */; };
 		5246B52E27F5ED4D004D2D6D /* SearchMoviesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246B52D27F5ED4D004D2D6D /* SearchMoviesProtocols.swift */; };
 		5246B53027F5FC8F004D2D6D /* SearchLocalTermsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246B52F27F5FC8F004D2D6D /* SearchLocalTermsGateway.swift */; };
 		5246B53227F6012E004D2D6D /* SearchMoviesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246B53127F6012E004D2D6D /* SearchMoviesInteractor.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		523C4A5F2819F42400C9E68B /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		5246B52D27F5ED4D004D2D6D /* SearchMoviesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesProtocols.swift; sourceTree = "<group>"; };
 		5246B52F27F5FC8F004D2D6D /* SearchLocalTermsGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLocalTermsGateway.swift; sourceTree = "<group>"; };
 		5246B53127F6012E004D2D6D /* SearchMoviesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMoviesInteractor.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				525920E527F3268F007F689F /* View.swift */,
 				525920E727F326CC007F689F /* ImageView.swift */,
 				525920E927F3278F007F689F /* TableView.swift */,
+				523C4A5F2819F42400C9E68B /* Image.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				525920DC27F27999007F689F /* WireframeProtocol.swift in Sources */,
 				525920E427F32621007F689F /* LayoutConstraint.swift in Sources */,
 				525920F127F32DA9007F689F /* MainViewController.swift in Sources */,
+				523C4A602819F42400C9E68B /* Image.swift in Sources */,
 				525920E627F3268F007F689F /* View.swift in Sources */,
 				52F88BFD27F760C800439BE1 /* SearchMoviesWireframe.swift in Sources */,
 				5259211727F3ABD4007F689F /* URLQueryItemEncoder.swift in Sources */,

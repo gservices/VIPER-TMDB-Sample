@@ -24,12 +24,16 @@ class MainViewController: UITabBarController {
         self.tabBar.unselectedItemTintColor = .lightGray
         self.tabBar.isTranslucent = true
         
+        let imageSize = CGSize(width: 30, height: 30)
+        let popularImageItem = UIImage(named: "popular")?.resizeImageTo(size: imageSize)
+        let searchImageItem = UIImage(named: "search")?.resizeImageTo(size: imageSize)
+        
         let mostRecentRoute = UINavigationController()
-        mostRecentRoute.tabBarItem = UITabBarItem(tabBarSystemItem: .mostRecent, tag: 0)
+        mostRecentRoute.tabBarItem = UITabBarItem(title: "Popular", image: popularImageItem, tag: 0)
         mostRecentRoute.setRootRoute(PopularMoviesWireframe())
         
         let searchRoute = UINavigationController()
-        searchRoute.tabBarItem =  UITabBarItem(tabBarSystemItem: .search, tag: 1)
+        searchRoute.tabBarItem =  UITabBarItem(title: "Pesquisar", image: searchImageItem, tag: 1)
         searchRoute.setRootRoute(SearchMoviesWireframe())
         
         
